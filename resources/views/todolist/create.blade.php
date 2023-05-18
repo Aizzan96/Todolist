@@ -38,6 +38,8 @@
                     @error('description')
                         <small class='text-danger'>Sila masukkan deskripsi</small>
                     @enderror --}}
+
+                        {{-- PENIPU --}}
                     </div>
                     <input type="submit" value="Submit">
 
