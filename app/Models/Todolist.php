@@ -19,6 +19,8 @@ class Todolist extends Model
 
     //fillable is the opposite of guarded
 
+    //THE PART ABOVE IS OPTIONAL
+
   /**
    * Get the user that owns the Todolist
    *
