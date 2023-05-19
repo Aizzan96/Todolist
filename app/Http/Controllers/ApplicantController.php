@@ -68,6 +68,16 @@ class ApplicantController extends Controller
         $applicant->created_at = Carbon::now();
         $applicant->save();
 
+        $applicantId = $applicant ->id;
+
+        // $academic = new Academic();
+        // $academic->category = $request->name;
+        // $academic->name = $request->name;
+        // $academic->applicant_id = $applicantId;
+        // $academic->created_at = Carbon::now();
+        // $academic->save();
+
+
         // // return view('todolist.create');
         return redirect()->route('applicants.index');
     }
@@ -89,9 +99,10 @@ class ApplicantController extends Controller
      * @param  \App\Models\Applicant  $applicant
      * @return \Illuminate\Http\Response
      */
-    public function edit(Applicant $applicant)
+    public function edit($id)
     {
-        //
+        // $applicant =Applicant::wit('academics')->where('id',$id)->get()->first();
+        // return view('applicants.edit',compact('applicant'));
     }
 
     /**
@@ -112,8 +123,12 @@ class ApplicantController extends Controller
      * @param  \App\Models\Applicant  $applicant
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Applicant $applicant)
+    public function destroy($id)
     {
-        //
+        $applicant = Applicant::findOrFail($id);
+        $applicant->delete();
+
+        return redirect()->route('applicants.index');
+
     }
 }

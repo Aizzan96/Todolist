@@ -16,16 +16,22 @@
                             <th scope="col">DOB</th>
                             <th scope="col">Age</th>
                             <th scope="col">Address</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($applicants as $key => $applicant)
                             <tr>
-                                <th scope="row">1</th>
+
                                 <td>{{ $applicant->name }}</td>
-                                <td>{{ $applicant->name }}</td>
-                                <td>{{ $applicant->name }}</td>
-                                <td>{{ $applicant->name }}</td>
+                                <td>{{ $applicant->ic }}</td>
+                                <td>{{ $applicant->dob }}</td>
+                                <td>{{ $applicant->age }}</td>
+                                <td>{{ $applicant->address }}</td>
+                                <td><a class="btn btn-primary" href="#">Edit</a></td>
+                                <td><a class="btn btn-danger"
+                                        href="{{ route('applicants.destroy', $applicant->id) }}">Delete</a></td>
+
                             </tr>
                         @endforeach
                     </tbody>

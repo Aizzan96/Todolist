@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="contatiner">
-        <h5>Application form</h5>
-        <div class="row">
-            <form action="{{ route('applicants.store') }}" method='POST'>
-                @csrf
-                <div class="col-md-8">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">Application form</div>
+            <div class="card-body">
+                <form action="{{ route('applicants.store') }}" method='POST'>
+                    @csrf
+
                     <div class="row">
                         <div class="col-md-6">
                             <label for="">Name</label>
@@ -33,11 +34,13 @@
                             <textarea class="form-control" type="text" name="address" value={{ old('address') }}
                                 placeholder="Plese enter address"></textarea>
                         </div>
-                        <input type="submit" value="Submit">
+                        <button class="btn btn-info mt-4" type="submit">submit</button>
 
                     </div>
-                </div>
-            </form>
+
+
+                </form>
+            </div>
         </div>
     </div>
 @endsection
