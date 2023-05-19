@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('ic', 12);
             $table->date('dob');
             $table->integer('age')->unsigned()->nullable();
-            $table->text('alamat')->nullable();
+            $table->text('address')->nullable();
             $table->timestamps();
         });
     }

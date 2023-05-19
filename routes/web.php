@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ApplicantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,4 @@ Route::get('/edit/{id}', [HomeController::class, 'edit'])->name('todolist.edit')
 Route::delete('/home/{id}', [HomeController::class, 'delete'])->name('todolist.delete'); //delete
 // Route::delete('/home/{id}', [App\Http\Controllers\HomeController::class, 'delete'])->name('todolist.delete');
 // Route::delete('/home/{id}', [App\Http\Controllers\HomeController::class, 'delete'])->name('todolist.delete');
+Route::get('/application', [ApplicantController::class, 'index'])->name('application');

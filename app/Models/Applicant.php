@@ -9,6 +9,8 @@ class Applicant extends Model
 {
     use HasFactory;
 
+
+
     /**
      * Get all of the comments for the Applicant
      *
