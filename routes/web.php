@@ -31,4 +31,5 @@ Route::get('/edit/{id}', [HomeController::class, 'edit'])->name('todolist.edit')
 Route::delete('/home/{id}', [HomeController::class, 'delete'])->name('todolist.delete'); //delete
 // Route::delete('/home/{id}', [App\Http\Controllers\HomeController::class, 'delete'])->name('todolist.delete');
 // Route::delete('/home/{id}', [App\Http\Controllers\HomeController::class, 'delete'])->name('todolist.delete');
-Route::get('/application', [ApplicantController::class, 'index'])->name('application');
+Route::get('/applicants/index', [ApplicantController::class, 'index'])->name('applicants.index');
+Route::get('/applicants/create', [ApplicantController::class, 'create'])->name('applicants.create');

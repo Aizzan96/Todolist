@@ -30,7 +30,7 @@
                         <a class="nav-link" href={{ route('todolist.home') }}>Todolist <span class="sr-only"></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href={{ route('application') }}>Job Application</a>
+                        <a class="nav-link" href={{ route('applicants.index') }}>Job Application</a>
                     </li>
                 </ul>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
