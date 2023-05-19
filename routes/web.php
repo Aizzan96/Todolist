@@ -33,3 +33,6 @@ Route::delete('/home/{id}', [HomeController::class, 'delete'])->name('todolist.d
 // Route::delete('/home/{id}', [App\Http\Controllers\HomeController::class, 'delete'])->name('todolist.delete');
 Route::get('/applicants/index', [ApplicantController::class, 'index'])->name('applicants.index');
 Route::get('/applicants/create', [ApplicantController::class, 'create'])->name('applicants.create');
+Route::post('/applicants/store', [ApplicantController::class, 'store'])->name('applicants.store');
+
+

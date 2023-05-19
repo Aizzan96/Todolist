@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
 
             <h5>Job Applicants</h5>
-            <a class="btn btn.primary btn-sm" href={{route('application.create')}}>Add</a>
+            <a class="btn btn.primary btn-sm" href={{ route('applicants.create') }}>Add</a>
 
             @if ($applicants->isNotEmpty())
                 <table class="table">
@@ -19,15 +19,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach() --}}
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                        </tr>
-                        {{-- @endforeach --}}
+                        @foreach ($applicants as $key => $applicant)
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>{{ $applicant->name }}</td>
+                                <td>{{ $applicant->name }}</td>
+                                <td>{{ $applicant->name }}</td>
+                                <td>{{ $applicant->name }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             @else

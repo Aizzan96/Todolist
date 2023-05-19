@@ -1,10 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Models\Applicant;
 use App\Http\Requests\StoreApplicantRequest;
 use App\Http\Requests\UpdateApplicantRequest;
+use Illuminate\Support\Facades\DB; //need to import to for DB query and paginate
+use Carbon\Carbon;//carbon date
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ApplicantController extends Controller
 {
@@ -16,6 +20,7 @@ class ApplicantController extends Controller
     public function index()
     {
         $applicants = Applicant::all();
+        $applicants =Applicant::get();
 
         return view('applicants.index',compact('applicants'));
 
@@ -37,9 +42,34 @@ class ApplicantController extends Controller
      * @param  \App\Http\Requests\StoreApplicantRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreApplicantRequest $request)
-    {
-        //
+    public function store(Request $request)
+
+      {
+
+        $request ->validate ([
+            'name' => 'required',
+            'ic' => 'required',
+            'dob' => 'bail|required|date',
+            'age' => 'required',
+            'address' => 'required',
+
+        ],[
+            // 'due_date.required' => 'Sila masukkan tarikh akhir',
+            // 'due_date.date' => 'Sila semak jenis data',
+        ]);
+        // $loggedUser=Auth::user();
+
+        $applicant = new Applicant();
+        $applicant->name = $request->name;
+        $applicant->ic = $request->ic;
+        $applicant->dob = $request->dob;
+        $applicant->age = $request->age;
+        $applicant->address = $request->address;
+        $applicant->created_at = Carbon::now();
+        $applicant->save();
+
+        // // return view('todolist.create');
+        return redirect()->route('applicants.index');
     }
 
     /**
