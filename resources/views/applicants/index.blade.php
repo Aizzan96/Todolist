@@ -28,6 +28,14 @@
                                 <td>{{ $applicant->dob }}</td>
                                 <td>{{ $applicant->age }}</td>
                                 <td>{{ $applicant->address }}</td>
+                                {{-- <td>{{ $applicant->academics->first()->fileupload }}</td> --}}
+                                <td>
+                                    @if ($applicant->academics->isNotEmpty())
+                                        {{ $applicant->academics->first()->fileupload }}
+                                    @else
+                                        No academic record available
+                                    @endif
+                                </td>
                                 <td><a class="btn btn-primary" href="#">Edit</a></td>
                                 <td><a class="btn btn-danger"
                                         href="{{ route('applicants.destroy', $applicant->id) }}">Delete</a></td>

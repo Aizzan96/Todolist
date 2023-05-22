@@ -1,1 +1,7 @@
+.hidden-input {
+    border: none;
+    /* Remove border */
+    background: none;
+    /* Remove background */
 
+}

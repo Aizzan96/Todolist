@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Applicant;
+use App\Models\Academic;
 use App\Http\Requests\StoreApplicantRequest;
 use App\Http\Requests\UpdateApplicantRequest;
 use Illuminate\Support\Facades\DB; //need to import to for DB query and paginate
@@ -19,8 +20,10 @@ class ApplicantController extends Controller
      */
     public function index()
     {
+        // $academics = Academic::all();
         $applicants = Applicant::all();
         $applicants =Applicant::get();
+        $applicants = Applicant::with('academics')->get();
 
         return view('applicants.index',compact('applicants'));
 
@@ -46,6 +49,9 @@ class ApplicantController extends Controller
 
       {
 
+
+
+
         $request ->validate ([
             'name' => 'required',
             'ic' => 'required',
@@ -68,7 +74,7 @@ class ApplicantController extends Controller
         $applicant->created_at = Carbon::now();
         $applicant->save();
 
-        $applicantId = $applicant ->id;
+        // $applicantId = $applicant ->id;
 
         // $academic = new Academic();
         // $academic->category = $request->name;
@@ -77,6 +83,26 @@ class ApplicantController extends Controller
         // $academic->created_at = Carbon::now();
         // $academic->save();
 
+
+    // Create the academic record
+    $academic = new Academic();
+    $academic->applicant_id = $applicant->id;
+    $academic->category = $request ->category;
+    $academic->name = $request->academic_name;
+
+
+   if ($request->hasFile('fileupload')) {
+    $file = $request->file('fileupload');
+    $filename = $file->getClientOriginalName();
+    $path = $file->storeAs('academic_files', $filename, 'public');
+    $academic->path = $path;
+    $academic->fileupload = $filename;
+
+
+    // Perform any other operations
+}
+    $academic->created_at = Carbon::now();
+    $academic->save();
 
         // // return view('todolist.create');
         return redirect()->route('applicants.index');
