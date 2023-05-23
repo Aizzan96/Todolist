@@ -74,44 +74,78 @@ class ApplicantController extends Controller
         $applicant->created_at = Carbon::now();
         $applicant->save();
 
-        // $applicantId = $applicant ->id;
+        $academic = new Academic();
+        $academic->applicant_id = $applicant->id;
+        $academic->created_at = Carbon::now();
 
-        // $academic = new Academic();
-        // $academic->category = $request->name;
-        // $academic->name = $request->name;
-        // $academic->applicant_id = $applicantId;
-        // $academic->created_at = Carbon::now();
-        // $academic->save();
+        $index = 0;
+        $fileuploads = [];
+        $categoryKey = 'category';
+        $academicNameKey = 'academic_name';
+        $fileuploadKey = 'fileupload';
+
+        while ($request->hasFile($fileuploadKey . $index)) {
+            $fileuploads[] = [
+            'category' => $request->input($categoryKey . $index),
+            'academic_name' => $request->input($academicNameKey . $index),
+            'fileupload' => $request->file($fileuploadKey . $index)
+            ];
+            $index++;
+        }
+
+
+
+        foreach ($fileuploads as $fileupload) {
+            $category = $fileupload['category'];
+            $academicName = $fileupload['academic_name'];
+            $file = $fileupload['fileupload'];
+            $column = $request->name;
+            $applicantId = $applicant->id;
+
+            if ($file) {
+                $extension = $file->getClientOriginalExtension();
+                $filename = $column . "_" . $academicName . "_" . $applicantId . "." . $extension;
+                $path = $file->storeAs('academic_files', $filename, 'public');
+
+                $academicClone = clone $academic;
+                $academicClone->category = $category;
+                $academicClone->name = $academicName;
+                $academicClone->path = $path;
+                $academicClone->fileupload = $filename;
+                $academicClone->save();
+                }
+        }
+
 
 
     // Create the academic record
-    $academic = new Academic();
-    $academic->applicant_id = $applicant->id;
-    $academic->category = $request ->category;
-    $academic->name = $request->academic_name;
+//     $academic = new Academic();
+//     $academic->applicant_id = $applicant->id;
+//     $academic->category = $request ->category;
+//     $academic->name = $request->academic_name;
 
 
-   if ($request->hasFile('fileupload')) {
-    $file = $request->file('fileupload');
-    $academicName = $request->input('academic_name'); // Assuming you have the academic_name value
-    $applicantId = $applicant->id; // Assuming you have the applicant_id value
+//    if ($request->hasFile('fileupload')) {
+//     $file = $request->file('fileupload');
+//     $academicName = $request->input('academic_name'); // Assuming you have the academic_name value
+//     $applicantId = $applicant->id; // Assuming you have the applicant_id value
 
-    $column = $request->name; // Replace 'column_name' with the actual column name
-    $extension = $file->getClientOriginalExtension();
+//     $column = $request->name; // Replace 'column_name' with the actual column name
+//     $extension = $file->getClientOriginalExtension();
 
-    $filename = $column . "_" . $academicName . "_" . $applicantId . "." . $extension;
+//     $filename = $column . "_" . $academicName . "_" . $applicantId . "." . $extension;
 
-    $path = $file->storeAs('academic_files', $filename, 'public');
-    $academic->path = $path;
-    $academic->fileupload = $filename;
+//     $path = $file->storeAs('academic_files', $filename, 'public');
+//     $academic->path = $path;
+//     $academic->fileupload = $filename;
 
 
-    // Perform any other operations
-}
-    $academic->created_at = Carbon::now();
-    $academic->save();
+//     // Perform any other operations
+// }
+//     $academic->created_at = Carbon::now();
+//     $academic->save();
 
-        // // return view('todolist.create');
+
         return redirect()->route('applicants.index');
     }
 

@@ -53,12 +53,36 @@
 
                                     <tr>
 
-                                        <td><input type="text" name="category" value="SPM" class="hidden-input">
+                                        <td><input type="text" name="category0" value="SPM" class="hidden-input">
                                         </td>
-                                        <td><input type="text" name="academic_name" value="Sijil Pelajaran Malaysia"
+                                        <td><input type="text" name="academic_name0" value="Sijil Pelajaran Malaysia"
                                                 class="hidden-input">
                                         </td>
-                                        <td><input type="file" name="fileupload" accept=".pdf, .doc, .docx">
+                                        <td><input type="file" name="fileupload0" accept=".pdf, .doc, .docx">
+                                        </td>
+
+
+                                    </tr>
+                                    <tr>
+
+                                        <td><input type="text" name="category1" value="STPM" class="hidden-input">
+                                        </td>
+                                        <td><input type="text" name="academic_name1"
+                                                value="Sijil Tinggi Pelajaran Malaysia" class="hidden-input">
+                                        </td>
+                                        <td><input type="file" name="fileupload1" accept=".pdf, .doc, .docx">
+                                        </td>
+
+
+                                    </tr>
+                                    <tr>
+
+                                        <td><input type="text" name="category2" value="DIPLOMA" class="hidden-input">
+                                        </td>
+                                        <td><input type="text" name="academic_name2" value="Diploma Sains Komputer"
+                                                class="hidden-input">
+                                        </td>
+                                        <td><input type="file" name="fileupload2" accept=".pdf, .doc, .docx">
                                         </td>
 
 
