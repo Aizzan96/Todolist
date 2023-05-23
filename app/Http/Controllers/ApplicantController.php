@@ -93,7 +93,14 @@ class ApplicantController extends Controller
 
    if ($request->hasFile('fileupload')) {
     $file = $request->file('fileupload');
-    $filename = $file->getClientOriginalName();
+    $academicName = $request->input('academic_name'); // Assuming you have the academic_name value
+    $applicantId = $applicant->id; // Assuming you have the applicant_id value
+
+    $column = $request->name; // Replace 'column_name' with the actual column name
+    $extension = $file->getClientOriginalExtension();
+
+    $filename = $column . "_" . $academicName . "_" . $applicantId . "." . $extension;
+
     $path = $file->storeAs('academic_files', $filename, 'public');
     $academic->path = $path;
     $academic->fileupload = $filename;
