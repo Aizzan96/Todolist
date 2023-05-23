@@ -37,8 +37,15 @@
                                     @endif
                                 </td>
                                 <td><a class="btn btn-primary" href="#">Edit</a></td>
-                                <td><a class="btn btn-danger"
-                                        href="{{ route('applicants.destroy', $applicant->id) }}">Delete</a></td>
+                                <td>
+                                    <form action="{{ route('applicants.delete', ['id' => $applicant->id]) }}" method="POST"
+                                        style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger"
+                                            onclick="return confirm('Are you sure you want to delete this applicant?')">Delete</button>
+                                    </form>
+                                </td>
 
                             </tr>
                         @endforeach

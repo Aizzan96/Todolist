@@ -149,12 +149,11 @@ class ApplicantController extends Controller
      * @param  \App\Models\Applicant  $applicant
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+   public function delete($id)
     {
         $applicant = Applicant::findOrFail($id);
         $applicant->delete();
 
         return redirect()->route('applicants.index');
-
     }
 }
